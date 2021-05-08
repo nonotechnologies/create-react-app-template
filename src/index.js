@@ -1,21 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import './index.css';
 
-ReactDOM.render(
-  <React.StrictMode>
+import { store } from './helpers';
+import { App } from './App/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// setup fake backend
+import { configureFakeBackend } from './helpers';
+configureFakeBackend();
+
+render(
     <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+        <App />
+    </Provider>,
+    document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
